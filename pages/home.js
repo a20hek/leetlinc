@@ -61,6 +61,9 @@ export default function Home() {
 	console.log(result);
 
 	return (
+		//HELP
+		//NAVBAR
+		//LOGO
 		<div>
 			{isLoggedin ? (
 				<>
