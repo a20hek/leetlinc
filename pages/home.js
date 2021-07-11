@@ -2,58 +2,127 @@ import { useAuth } from '../lib/auth';
 import { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import { useRouter } from 'next/router';
-
-export async function docRef() {
-	firebase
-		.firestore()
-		.collection('users')
-		.doc(uid)
-		.onSnapshot(
-			function (doc) {
-				let data = doc.data;
-				return {
-					college: data.college,
-					pname: data.name,
-					skills: data.skills,
-				};
-			}.then(console.log(college, pname, skills))
-		);
-}
+import {
+	Box,
+	Input,
+	Button,
+	Heading,
+	Center,
+	Image,
+	Text,
+	Flex,
+	Tag,
+	Container,
+	InputGroup,
+	InputLeftAddon,
+} from '@chakra-ui/react';
+import { Search2Icon } from '@chakra-ui/icons';
 
 export default function Home() {
-	const { user, signout } = useAuth();
+	const { user, signout, uid } = useAuth();
 	const router = useRouter();
-	const [isLoggedin, setIsLoggedin] = useState(false);
-
 	const [input, setInput] = useState('');
 
+	const handleKeyPress = (event) => {
+		if (event.key === 'Enter') {
+			router.push({
+				pathname: '/search/[searchResult]',
+				query: { searchResult: input },
+			});
+		}
+	};
+
+	const [isLoggedin, setIsLoggedin] = useState(false);
 	firebase.auth().onAuthStateChanged(function (user) {
 		setIsLoggedin(!!user);
 	});
 
+	const [result, setResult] = useState([]);
+
+	async function Userdata(uid) {
+		const snapshot = await firebase
+			.firestore()
+			.collection('users')
+			.where('uid', '==', uid)
+			.get();
+		const results = [];
+		snapshot.forEach((doc) => {
+			results.push({ id: doc.id, ...doc.data() });
+		});
+		return { results };
+	}
+
+	useEffect(() => {
+		if (uid) {
+			Userdata(uid).then(({ results }) => setResult(results));
+		}
+	}, [uid]);
+
+	console.log(result);
+
 	return (
 		<div>
 			{isLoggedin ? (
-				<div>
-					<p>{user?.name}</p>
-					<button onClick={() => signout()}>Log Out</button>
-					<h1>Connect. Collaborate. Learn. Seek Help.</h1>
-					<input
-						type='text'
-						placeholder='Search'
-						value={input}
-						onChange={(e) => setInput(e.target.value)}
-					/>
-					<button
-						onClick={() =>
-							router.push({
-								pathname: '/search/[searchResult]',
-								query: { searchResult: input },
-							})
-						}>
-						go
-					</button>
-				</div>
+				<Box bg='#f4f4f4' h='100vh' pr='5%' pl='5%'>
+					<Image src='/logo-black.svg' alt='leetlinc' p={5} />{' '}
+					<Flex>
+						<Flex direction='column' w='80vw'>
+							<Heading textAlign='center' mt='5%' mb='5%' as='h1' size='2xl'>
+								Connect. Collaborate. Learn. Seek Help.
+							</Heading>
+							<InputGroup size='lg' w='80%' m='auto'>
+								<InputLeftAddon children={<Search2Icon />} bg='#fdfdfd' />
+								<Input
+									textColor='#000000'
+									variant='outline'
+									placeholder='Search for keywords like ‘web developer’, ‘designer’, ‘marketers’, etc'
+									colorScheme='whiteAlpha'
+									size='lg'
+									bg='#ffffff'
+									value={input}
+									onChange={(e) => setInput(e.target.value)}
+									onKeyPress={handleKeyPress}
+								/>
+							</InputGroup>
+						</Flex>
+						<Flex>
+							<Flex direction='column' align='center'>
+								<div>
+									{result.length > 0 && (
+										<Container bg='#ffffff' borderRadius='5px' mt='1%'>
+											<Text fontSize='xl' fontWeight='500' pt={2}>
+												{result[0].name}
+											</Text>
+											<Text fontSize='md' fontWeight='300' pt={1} pb={2}>
+												{result[0].college}
+											</Text>
+											<ul>
+												{result[0].skills.map((skill) => (
+													<Tag
+														mr={1}
+														mb={1}
+														bg='#0eb500'
+														textColor='#ffffff'
+														opacity='0.6'>
+														{skill}
+													</Tag>
+												))}
+											</ul>
+											<Button
+												colorScheme='red'
+												onClick={() => signout()}
+												size='xs'
+												m={4}
+												variant='ghost'>
+												Log Out
+											</Button>
+										</Container>
+									)}
+								</div>
+							</Flex>
+						</Flex>
+					</Flex>
+				</Box>
 			) : null}
 		</div>
 	);

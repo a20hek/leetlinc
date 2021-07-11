@@ -4,6 +4,17 @@ import firebase from 'firebase';
 import { useEffect } from 'react';
 import { useAuth } from '../../lib/auth';
 import { useForm } from 'react-hook-form';
+import {
+	Button,
+	Input,
+	FormControl,
+	FormLabel,
+	Stack,
+	Center,
+	Text,
+	Container,
+	Heading,
+} from '@chakra-ui/react';
 
 export default function Registration1() {
 	const firestore = firebase.firestore();
@@ -19,7 +30,7 @@ export default function Registration1() {
 		setIsLoggedin(!!user);
 	});
 
-	function updatestuff(data, uid) {
+	function updatenameandcollege(data, uid) {
 		return firestore
 			.collection('users')
 			.doc(uid)
@@ -30,24 +41,57 @@ export default function Registration1() {
 	return (
 		<>
 			{isLoggedin ? (
-				<div>
-					<form onSubmit={handleSubmit((data) => updatestuff(data, uid))}>
-						<label htmlFor='name'>Enter your name</label>
-						<input placeholder='Vishy Anand' type='text' {...register('name')} />
-						<br />
-						<label htmlFor='college'>Enter your college's name</label>
-						<input
-							placeholder='Zugzwang College'
-							type='text'
-							{...register('college')}
-						/>
-						<br />
-						<button type='submit'> Next</button>
-					</form>
-				</div>
-			) : (
-				<div></div>
-			)}
+				<Container centerContent>
+					<Heading fontWeight='400' textAlign='center' mt='15%'>
+						Welcome!
+					</Heading>
+					<Heading size='md' opacity='0.7' textAlign='center' mt={2}>
+						It's great to have you here {':)'}
+					</Heading>
+					<Text fontWeight='500' opacity='0.5' textAlign='center' mt={10} mb={5}>
+						Let's complete setting up your profile..
+					</Text>
+					<Stack
+						as='form'
+						onSubmit={handleSubmit((data) => updatenameandcollege(data, uid))}>
+						<FormControl>
+							<FormLabel htmlFor='name' opacity='0.7'>
+								Enter your name
+							</FormLabel>
+							<Input
+								placeholder='Vishy Anand'
+								type='text'
+								{...register('name')}
+								w='400px'
+							/>
+						</FormControl>
+						<FormControl>
+							<FormLabel htmlFor='college' opacity='0.7'>
+								Enter your college name
+							</FormLabel>
+							<Input
+								w='400px'
+								placeholder='Zugzwang College'
+								type='text'
+								{...register('college')}
+							/>
+						</FormControl>
+						<Center>
+							<Button
+								type='submit'
+								w='60%'
+								mt={5}
+								bg='#0EB500'
+								borderColor='green.300'
+								variant='outline'
+								textColor='#ffffff'
+								_hover={{ bg: '#13DA01' }}>
+								Next
+							</Button>
+						</Center>
+					</Stack>
+				</Container>
+			) : null}
 		</>
 	);
 }
