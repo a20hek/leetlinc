@@ -27,7 +27,7 @@ const Card = (props) => {
 			</Text>
 			<ul>
 				{props.skills.map((skill) => (
-					<Tag mr={1} mb={1} bg='#0eb500' textColor='#ffffff' opacity='0.6'>
+					<Tag key={skill} mr={1} mb={1} bg='#0eb500' textColor='#ffffff' opacity='0.6'>
 						{skill}
 					</Tag>
 				))}
@@ -81,7 +81,9 @@ export default function SearchResult() {
 		<Box bg='#f4f4f4' height='100vh'>
 			<Container maxW='container.md'>
 				<InputGroup size='lg'>
-					<InputLeftAddon children={<Search2Icon />} bg='#fdfdfd' />
+					<InputLeftAddon>
+						<Search2Icon />
+					</InputLeftAddon>
 					<Input
 						m='auto'
 						textColor='#000000'
@@ -98,6 +100,7 @@ export default function SearchResult() {
 					{result.length > 0 &&
 						result.map((item) => (
 							<Card
+								key={item.name}
 								name={item.name}
 								skills={item.skills}
 								college={item.college}

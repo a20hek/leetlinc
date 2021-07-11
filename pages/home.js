@@ -71,7 +71,9 @@ export default function Home() {
 								Connect. Collaborate. Learn. Seek Help.
 							</Heading>
 							<InputGroup size='lg' w='80%' m='auto'>
-								<InputLeftAddon children={<Search2Icon />} bg='#fdfdfd' />
+								<InputLeftAddon bg='#fdfdfd'>
+									<Search2Icon />
+								</InputLeftAddon>
 								<Input
 									textColor='#000000'
 									variant='outline'
@@ -99,6 +101,7 @@ export default function Home() {
 											<ul>
 												{result[0].skills.map((skill) => (
 													<Tag
+														key={skill}
 														mr={1}
 														mb={1}
 														bg='#0eb500'

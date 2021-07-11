@@ -137,12 +137,14 @@ function LandingPage() {
 				</Center>
 				/>
 				<InputGroup size='lg' w='80%' maxW='720px' m='auto'>
-					<InputLeftAddon children={<Search2Icon />} bg='#fdfdfd' />
+					<InputLeftAddon bg='#fdfdfd'>
+						<Search2Icon />
+					</InputLeftAddon>
 
 					<Input
 						textColor='#000000'
 						variant='outline'
-						placeholder='Search for keywords like ‘web developer’, ‘designer’, ‘marketers’, etc'
+						placeholder="Search for keywords like 'web developer', ‘designer’, ‘marketers’, etc"
 						colorScheme='whiteAlpha'
 						size='lg'
 						bg='#ffffff'
@@ -151,7 +153,7 @@ function LandingPage() {
 				</InputGroup>
 			</Box>
 			<Flex justifyContent='center'>
-				<SimpleGrid columns={2} columns={2}>
+				<SimpleGrid columns={2}>
 					<Flex direction='column' m='5%'>
 						<Center>
 							<Image src='/connect-icon.svg' alt='connect' m='2%' />
@@ -171,7 +173,8 @@ function LandingPage() {
 							Collaborate
 						</Heading>
 						<Text textAlign='center' fontSize='xl' opacity='70%' mt='1%'>
-							Find and connect with students who have similar interests.
+							Find people to collaborate with on that cool thing that you&apos;re
+							planning to build.
 						</Text>
 					</Flex>
 					<Flex direction='column' m='5%'>

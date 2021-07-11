@@ -56,7 +56,7 @@ export default function Registration2() {
 						Welcome!
 					</Heading>
 					<Heading size='md' opacity='0.7' textAlign='center' mt={2}>
-						It's great to have you here {':)'}
+						It&apos;s great to have you here {':)'}
 					</Heading>
 					<Text fontWeight='500' opacity='0.5' textAlign='center' mt={10} mb={5}>
 						One last step before you get started..
@@ -94,7 +94,12 @@ export default function Registration2() {
 						</Flex>
 						<ul>
 							{skills.map((skill) => (
-								<Tag m={1} bg='#0eb500' textColor='#ffffff' opacity='0.6'>
+								<Tag
+									key={skill}
+									m={1}
+									bg='#0eb500'
+									textColor='#ffffff'
+									opacity='0.6'>
 									{skill}
 								</Tag>
 							))}

@@ -46,10 +46,10 @@ export default function Registration1() {
 						Welcome!
 					</Heading>
 					<Heading size='md' opacity='0.7' textAlign='center' mt={2}>
-						It's great to have you here {':)'}
+						It&apos;s great to have you here {':)'}
 					</Heading>
 					<Text fontWeight='500' opacity='0.5' textAlign='center' mt={10} mb={5}>
-						Let's complete setting up your profile..
+						Let&apos;s complete setting up your profile..
 					</Text>
 					<Stack
 						as='form'
