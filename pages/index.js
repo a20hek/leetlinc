@@ -135,7 +135,6 @@ function LandingPage() {
 						Find students from within the Pillai Campus to work with, on cool stuff
 					</Heading>
 				</Center>
-				/>
 				<InputGroup size='lg' w='80%' maxW='720px' m='auto'>
 					<InputLeftAddon bg='#fdfdfd'>
 						<Search2Icon />
