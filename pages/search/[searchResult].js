@@ -6,14 +6,13 @@ import {
 	Text,
 	Container,
 	Tag,
-	Spacer,
-	Stack,
 	Input,
 	Flex,
 	InputGroup,
 	InputLeftAddon,
 } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons';
+import Head from 'next/head';
 
 const Card = (props) => {
 	return (
@@ -54,6 +53,11 @@ export default function SearchResult() {
 		return { results };
 	}
 
+	const [isLoggedin, setIsLoggedin] = useState(false);
+	firebase.auth().onAuthStateChanged(function (user) {
+		setIsLoggedin(!!user);
+	});
+
 	const router = useRouter();
 	const searchreq = router.query.searchResult;
 	const [result, setResult] = useState([]);
@@ -78,37 +82,46 @@ export default function SearchResult() {
 	}, [searchreq]);
 
 	return (
-		<Box bg='#f4f4f4' height='100vh'>
-			<Container maxW='container.md'>
-				<InputGroup size='lg'>
-					<InputLeftAddon>
-						<Search2Icon />
-					</InputLeftAddon>
-					<Input
-						m='auto'
-						textColor='#000000'
-						variant='outline'
-						placeholder='Search for keywords like ‘web developer’, ‘designer’, ‘marketers’, etc'
-						colorScheme='whiteAlpha'
-						bg='#fdfdfd'
-						value={input}
-						onChange={(e) => setInput(e.target.value)}
-						onKeyPress={handleKeyPress}
-					/>
-				</InputGroup>
-				<Flex direction='column' mt='5%'>
-					{result.length > 0 &&
-						result.map((item) => (
-							<Card
-								key={item.name}
-								name={item.name}
-								skills={item.skills}
-								college={item.college}
-								email={item.email}
-							/>
-						))}
-				</Flex>
-			</Container>
-		</Box>
+		<>
+			{isLoggedin ? (
+				<>
+					<Head>
+						<title>{searchreq} - Search | Leetlinc</title>
+					</Head>
+					<Box bg='#f4f4f4' height='100vh'>
+						<Container maxW='container.md'>
+							<InputGroup size='lg'>
+								<InputLeftAddon>
+									<Search2Icon />
+								</InputLeftAddon>
+								<Input
+									m='auto'
+									textColor='#000000'
+									variant='outline'
+									placeholder='Search for keywords like ‘web developer’, ‘designer’, ‘marketers’, etc'
+									colorScheme='whiteAlpha'
+									bg='#fdfdfd'
+									value={input}
+									onChange={(e) => setInput(e.target.value)}
+									onKeyPress={handleKeyPress}
+								/>
+							</InputGroup>
+							<Flex direction='column' mt='5%'>
+								{result.length > 0 &&
+									result.map((item) => (
+										<Card
+											key={item.name}
+											name={item.name}
+											skills={item.skills}
+											college={item.college}
+											email={item.email}
+										/>
+									))}
+							</Flex>
+						</Container>
+					</Box>
+				</>
+			) : null}
+		</>
 	);
 }

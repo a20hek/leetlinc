@@ -2,6 +2,8 @@ import React from 'react';
 import NextLink from 'next/link';
 import { useAuth } from '../lib/auth';
 import Loginform from '../components/Loginform';
+import Head from 'next/head';
+
 import {
 	Box,
 	Flex,
@@ -39,7 +41,7 @@ function LandingPage() {
 	};
 	return (
 		<>
-			{/* <script
+			<script
 				dangerouslySetInnerHTML={{
 					__html: `
               if (document.cookie && document.cookie.includes('leetlinc-auth')) {
@@ -47,7 +49,10 @@ function LandingPage() {
               }
             `,
 				}}
-			/> */}
+			/>
+			<Head>
+				<title>Leetlinc | Connect, Collaborate, Learn, Seek Help</title>
+			</Head>
 
 			<Box
 				height='60vh'

@@ -5,7 +5,6 @@ import firebase from 'firebase/app';
 import {
 	Button,
 	Input,
-	FormControl,
 	FormLabel,
 	Stack,
 	Center,
@@ -17,6 +16,7 @@ import {
 	Tooltip,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
+import Head from 'next/head';
 
 export default function Registration2() {
 	const firestore = firebase.firestore();
@@ -51,74 +51,79 @@ export default function Registration2() {
 	return (
 		<>
 			{isLoggedin ? (
-				<Container centerContent>
-					<Heading fontWeight='400' textAlign='center' mt='15%'>
-						Welcome!
-					</Heading>
-					<Heading size='md' opacity='0.7' textAlign='center' mt={2}>
-						It&apos;s great to have you here {':)'}
-					</Heading>
-					<Text fontWeight='500' opacity='0.5' textAlign='center' mt={10} mb={5}>
-						One last step before you get started..
-					</Text>
-					<Stack>
-						<FormLabel htmlFor='name' opacity='0.7'>
-							Enter skills, frameworks and softwares known
-						</FormLabel>
-						<Flex>
-							<Input
-								autoFocus
-								w='400px'
-								placeholder='E.g. Javasript, Figma'
-								type='text'
-								value={input}
-								onChange={(e) => setInput(e.target.value)}
-							/>
-							<Tooltip
-								hasArrow
-								label='Add skill'
-								aria-label='Add Skills'
-								color='white'>
+				<>
+					<Head>
+						<title>Registration</title>
+					</Head>
+					<Container centerContent>
+						<Heading fontWeight='400' textAlign='center' mt='15%'>
+							Welcome!
+						</Heading>
+						<Heading size='md' opacity='0.7' textAlign='center' mt={2}>
+							It&apos;s great to have you here {':)'}
+						</Heading>
+						<Text fontWeight='500' opacity='0.5' textAlign='center' mt={10} mb={5}>
+							One last step before you get started..
+						</Text>
+						<Stack>
+							<FormLabel htmlFor='name' opacity='0.7'>
+								Enter skills, frameworks and softwares known
+							</FormLabel>
+							<Flex>
+								<Input
+									autoFocus
+									w='400px'
+									placeholder='E.g. Javasript, Figma'
+									type='text'
+									value={input}
+									onChange={(e) => setInput(e.target.value)}
+								/>
+								<Tooltip
+									hasArrow
+									label='Add skill'
+									aria-label='Add Skills'
+									color='white'>
+									<Button
+										disabled={!input}
+										onClick={addSkill}
+										ml={2}
+										borderRadius='100%'
+										h='40px'
+										w='40px'
+										bg='#13DA01'
+										_hover={{ bg: '#0eb500' }}>
+										<AddIcon color='#ffffff' />
+									</Button>
+								</Tooltip>
+							</Flex>
+							<ul>
+								{skills.map((skill) => (
+									<Tag
+										key={skill}
+										m={1}
+										bg='#0eb500'
+										textColor='#ffffff'
+										opacity='0.6'>
+										{skill}
+									</Tag>
+								))}
+							</ul>
+							<Center>
 								<Button
-									disabled={!input}
-									onClick={addSkill}
-									ml={2}
-									borderRadius='100%'
-									h='40px'
-									w='40px'
-									bg='#13DA01'
-									_hover={{ bg: '#0eb500' }}>
-									<AddIcon color='#ffffff' />
-								</Button>
-							</Tooltip>
-						</Flex>
-						<ul>
-							{skills.map((skill) => (
-								<Tag
-									key={skill}
-									m={1}
-									bg='#0eb500'
+									onClick={() => arrUnion(skills, user.uid)}
+									w='60%'
+									mt={5}
+									bg='#0EB500'
+									borderColor='green.300'
+									variant='outline'
 									textColor='#ffffff'
-									opacity='0.6'>
-									{skill}
-								</Tag>
-							))}
-						</ul>
-						<Center>
-							<Button
-								onClick={() => arrUnion(skills, user.uid)}
-								w='60%'
-								mt={5}
-								bg='#0EB500'
-								borderColor='green.300'
-								variant='outline'
-								textColor='#ffffff'
-								_hover={{ bg: '#13DA01' }}>
-								Next
-							</Button>
-						</Center>
-					</Stack>
-				</Container>
+									_hover={{ bg: '#13DA01' }}>
+									Next
+								</Button>
+							</Center>
+						</Stack>
+					</Container>
+				</>
 			) : null}
 		</>
 	);
