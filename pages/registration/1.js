@@ -20,8 +20,8 @@ export default function Registration1() {
 	const firestore = firebase.firestore();
 
 	const [isLoggedin, setIsLoggedin] = useState(false);
-	const { user, signout } = useAuth();
-	const uid = user.uid;
+	const { user, signout, uid } = useAuth();
+
 	const router = useRouter();
 
 	const { register, handleSubmit } = useForm();
