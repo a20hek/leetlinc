@@ -189,7 +189,7 @@ export default function Home() {
 								<Heading textAlign='center' mt='5%' mb='5%' as='h1' size='2xl'>
 									Connect. Collaborate. Learn. Seek Help.
 								</Heading>
-								<Tabs isLazy isFitted variant='enclosed'>
+								<Tabs isLazy isFitted variant='enclosed-colored'>
 									<TabList mb='1em'>
 										<Tab _selected={{ color: 'white', bg: '#F265FF' }}>
 											Search By Interest

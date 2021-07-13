@@ -63,6 +63,7 @@ export default function Registration1() {
 									Enter your name
 								</FormLabel>
 								<Input
+									isRequired
 									placeholder='Vishy Anand'
 									type='text'
 									{...register('name')}
@@ -74,6 +75,7 @@ export default function Registration1() {
 									Enter your college name
 								</FormLabel>
 								<Input
+									isRequired
 									w='400px'
 									placeholder='Zugzwang College'
 									type='text'

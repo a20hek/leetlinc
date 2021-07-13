@@ -79,7 +79,7 @@ export default function Register() {
 								placeholder='jake@gmail.com'
 								type='text'
 								{...register('email', {
-									required: 'this is required',
+									required: 'Email is required',
 									pattern: {
 										value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
 										message: 'Invalid email address',
@@ -97,7 +97,7 @@ export default function Register() {
 								w='400px'
 								type='password'
 								{...register('pass', {
-									required: 'this is a required',
+									required: 'Password is required',
 									minLength: {
 										value: 8,
 										message: 'Minimum length is 8',
