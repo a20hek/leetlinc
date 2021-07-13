@@ -125,17 +125,18 @@ export default function Home() {
 											</AccordionButton>
 											<AccordionPanel>
 												<ul>
-													{result[0].interests.map((interest) => (
-														<Tag
-															key={interest}
-															mr={1}
-															mb={1}
-															bg='#F265FF'
-															textColor='#ffffff'
-															opacity='0.7'>
-															{interest}
-														</Tag>
-													))}
+													{result[0].interests.length > 0 &&
+														result[0].interests.map((interest) => (
+															<Tag
+																key={interest}
+																mr={1}
+																mb={1}
+																bg='#F265FF'
+																textColor='#ffffff'
+																opacity='0.7'>
+																{interest}
+															</Tag>
+														))}
 												</ul>
 												<Button
 													textColor='#F265FF'
@@ -146,17 +147,18 @@ export default function Home() {
 													Edit Interests
 												</Button>
 												<ul>
-													{result[0].skills.map((skill) => (
-														<Tag
-															key={skill}
-															mr={1}
-															mb={1}
-															bg='#13DA01'
-															textColor='#ffffff'
-															opacity='0.7'>
-															{skill}
-														</Tag>
-													))}
+													{result[0].skills.length > 0 &&
+														result[0].skills.map((skill) => (
+															<Tag
+																key={skill}
+																mr={1}
+																mb={1}
+																bg='#13DA01'
+																textColor='#ffffff'
+																opacity='0.7'>
+																{skill}
+															</Tag>
+														))}
 												</ul>
 												<Button
 													textColor='#13DA01'
@@ -187,10 +189,14 @@ export default function Home() {
 								<Heading textAlign='center' mt='5%' mb='5%' as='h1' size='2xl'>
 									Connect. Collaborate. Learn. Seek Help.
 								</Heading>
-								<Tabs isFitted variant='enclosed'>
+								<Tabs isLazy isFitted variant='enclosed'>
 									<TabList mb='1em'>
-										<Tab>Search By Interest</Tab>
-										<Tab>Search By Skill</Tab>
+										<Tab _selected={{ color: 'white', bg: '#F265FF' }}>
+											Search By Interest
+										</Tab>
+										<Tab _selected={{ color: 'white', bg: '#13DA01' }}>
+											Search By Skill
+										</Tab>
 									</TabList>
 									<TabPanels>
 										<TabPanel>
