@@ -27,20 +27,28 @@ export default function Registration2() {
 	const router = useRouter();
 
 	const [skills, setSkills] = useState([]);
-	const [input, setInput] = useState('');
-
+	const [inputskill, setInputskill] = useState('');
 	const addSkill = (e) => {
 		e.preventDefault();
-		setSkills([...skills, input]);
-		setInput('');
+		setSkills([...skills, inputskill]);
+		setInputskill('');
 	};
 
-	function arrUnion(skills, uid) {
+	const [interests, setInterests] = useState([]);
+	const [inputinterest, setInputinterest] = useState('');
+	const addInterest = (e) => {
+		e.preventDefault();
+		setInterests([...interests, inputinterest]);
+		setInputinterest('');
+	};
+
+	function arrUnion(skills, interests, uid) {
 		return firestore
 			.collection('users')
 			.doc(uid)
 			.update({
 				skills: firebase.firestore.FieldValue.arrayUnion(...skills),
+				interests: firebase.firestore.FieldValue.arrayUnion(...interests),
 			})
 			.then(router.push('/home'));
 	}
@@ -56,7 +64,7 @@ export default function Registration2() {
 						<title>Registration</title>
 					</Head>
 					<Container centerContent>
-						<Heading fontWeight='400' textAlign='center' mt='15%'>
+						<Heading fontWeight='400' textAlign='center' mt='5%'>
 							Welcome!
 						</Heading>
 						<Heading size='md' opacity='0.7' textAlign='center' mt={2}>
@@ -65,18 +73,61 @@ export default function Registration2() {
 						<Text fontWeight='500' opacity='0.5' textAlign='center' mt={10} mb={5}>
 							One last step before you get started..
 						</Text>
+						<br />
 						<Stack>
 							<FormLabel htmlFor='name' opacity='0.7'>
-								Enter skills, frameworks and softwares known
+								Enter all the things that interests you
 							</FormLabel>
 							<Flex>
 								<Input
 									autoFocus
 									w='400px'
+									placeholder='E.g. AI, Crypto, Anime, Reading etc'
+									type='text'
+									value={inputinterest}
+									onChange={(e) => setInputinterest(e.target.value)}
+								/>
+								<Tooltip
+									hasArrow
+									label='Add interests'
+									aria-label='Add Interests'
+									color='white'>
+									<Button
+										disabled={!inputinterest}
+										onClick={addInterest}
+										ml={2}
+										borderRadius='100%'
+										h='40px'
+										w='40px'
+										bg='#F265FF'
+										_hover={{ bg: '#DE44EC' }}>
+										<AddIcon color='#ffffff' />
+									</Button>
+								</Tooltip>
+							</Flex>
+							<ul>
+								{interests.map((interest) => (
+									<Tag
+										key={interest}
+										m={1}
+										bg='#F265FF'
+										textColor='#ffffff'
+										opacity='0.7'>
+										{interest}
+									</Tag>
+								))}
+							</ul>
+							<br />
+							<FormLabel htmlFor='name' opacity='0.7'>
+								Enter skills, frameworks and softwares known
+							</FormLabel>
+							<Flex>
+								<Input
+									w='400px'
 									placeholder='E.g. Javasript, Figma'
 									type='text'
-									value={input}
-									onChange={(e) => setInput(e.target.value)}
+									value={inputskill}
+									onChange={(e) => setInputskill(e.target.value)}
 								/>
 								<Tooltip
 									hasArrow
@@ -84,14 +135,14 @@ export default function Registration2() {
 									aria-label='Add Skills'
 									color='white'>
 									<Button
-										disabled={!input}
+										disabled={!inputskill}
 										onClick={addSkill}
 										ml={2}
 										borderRadius='100%'
 										h='40px'
 										w='40px'
 										bg='#13DA01'
-										_hover={{ bg: '#0eb500' }}>
+										_hover={{ bg: '#0EB500' }}>
 										<AddIcon color='#ffffff' />
 									</Button>
 								</Tooltip>
@@ -101,16 +152,17 @@ export default function Registration2() {
 									<Tag
 										key={skill}
 										m={1}
-										bg='#0eb500'
+										bg='#13DA01'
 										textColor='#ffffff'
-										opacity='0.6'>
+										opacity='0.7'>
 										{skill}
 									</Tag>
 								))}
 							</ul>
+
 							<Center>
 								<Button
-									onClick={() => arrUnion(skills, user.uid)}
+									onClick={() => arrUnion(skills, interests, user.uid)}
 									w='60%'
 									mt={5}
 									bg='#0EB500'

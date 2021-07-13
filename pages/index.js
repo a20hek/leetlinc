@@ -71,7 +71,7 @@ function LandingPage() {
 						</Flex>
 						<Flex w='100%' justifyContent='flex-end'>
 							<Flex align='center'>
-								<NextLink href='/' passHref>
+								<NextLink href='/signup' passHref>
 									<Button
 										mr={20}
 										variant='outline'
@@ -118,7 +118,7 @@ function LandingPage() {
 								</Modal>
 							</Flex>
 							<Flex align='center'>
-								<NextLink href='/' passHref>
+								<NextLink href='/contact' passHref>
 									<Link mr={20} color='white'>
 										Contact
 									</Link>
@@ -160,7 +160,7 @@ function LandingPage() {
 				<SimpleGrid columns={2}>
 					<Flex direction='column' m='5%'>
 						<Center>
-							<Image src='/connect-icon.svg' alt='connect' m='2%' />
+							<Image src='/connect-icon.svg' alt='connect' />
 						</Center>
 						<Heading as='h2' size='lg' textAlign='center' opacity='80%'>
 							Connect
@@ -171,7 +171,7 @@ function LandingPage() {
 					</Flex>
 					<Flex direction='column' m='5%'>
 						<Center>
-							<Image alt='collaborate' src='/collaborate-icon.svg' m='2%' />
+							<Image alt='collaborate' src='/collaborate-icon.svg' />
 						</Center>
 						<Heading as='h2' size='lg' textAlign='center' opacity='80%'>
 							Collaborate
@@ -183,28 +183,32 @@ function LandingPage() {
 					</Flex>
 					<Flex direction='column' m='5%'>
 						<Center>
-							<Image src='/seekhelp-icon.svg' alt='seek-help' m='2%' />
+							<Image src='/seekhelp-icon.svg' alt='seek-help' />
 						</Center>
 						<Heading as='h2' size='lg' textAlign='center' opacity='80%'>
 							Seek Help
 						</Heading>
 						<Text textAlign='center' fontSize='xl' opacity='70%' mt='1%'>
-							Find and connect with students who have similar interests.
+							Stuck on a project? Connect with students who might be able to help
 						</Text>
 					</Flex>
-					<Flex direction='column' m='5%'>
+					<Flex direction='column' m='4%'>
 						<Center>
-							<Image src='/learn-icon.svg' alt='learn' m='2%' />
+							<Image src='/learn-icon.svg' alt='learn' />
 						</Center>
 						<Heading as='h2' size='lg' textAlign='center' opacity='80%'>
 							Learn from others and upskill
 						</Heading>
 						<Text textAlign='center' fontSize='xl' opacity='70%' mt='1%'>
-							Find and connect with students who have similar interests.
+							Thinking about learning a new skill? Connect with students who’re expert
+							at it to get a roadmap.
 						</Text>
 					</Flex>
 				</SimpleGrid>
 			</Flex>
+			<br />
+			<br />
+			<br />
 			<Box bg='#505050' w='100%' h='40px'>
 				<Text color='white' opacity='0.7' fontWeight='100' textAlign='right' mr='3%'>
 					© 2021 Abhishek Ajithkumar

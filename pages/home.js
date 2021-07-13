@@ -14,6 +14,17 @@ import {
 	Container,
 	InputGroup,
 	InputLeftAddon,
+	Accordion,
+	Center,
+	AccordionItem,
+	AccordionButton,
+	AccordionIcon,
+	AccordionPanel,
+	Tabs,
+	TabList,
+	TabPanel,
+	Tab,
+	TabPanels,
 } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons';
 import Head from 'next/head';
@@ -21,13 +32,23 @@ import Head from 'next/head';
 export default function Home() {
 	const { user, signout, uid } = useAuth();
 	const router = useRouter();
-	const [input, setInput] = useState('');
+	const [inputSkill, setInputSkill] = useState('');
+	const [inputInterest, setInputInterest] = useState('');
 
-	const handleKeyPress = (event) => {
+	const handleKeyPressSkill = (event) => {
 		if (event.key === 'Enter') {
 			router.push({
-				pathname: '/search/[searchResult]',
-				query: { searchResult: input },
+				pathname: '/searchskill/[searchSkill]',
+				query: { searchSkill: inputSkill },
+			});
+		}
+	};
+
+	const handleKeyPressInterest = (event) => {
+		if (event.key === 'Enter') {
+			router.push({
+				pathname: '/searchinterest/[searchInterest]',
+				query: { searchInterest: inputInterest },
 			});
 		}
 	};
@@ -64,77 +85,159 @@ export default function Home() {
 		//HELP
 		//NAVBAR
 		//LOGO
-		<div>
+		<>
 			{isLoggedin ? (
 				<>
 					<Head>
 						<title>Leetlinc </title>
 					</Head>
 					<Box bg='#f4f4f4' h='100vh' pr='5%' pl='5%'>
-						<Image src='/logo-black.svg' alt='leetlinc' p={5} />{' '}
-						<Flex>
-							<Flex direction='column' w='80vw'>
-								<Heading textAlign='center' mt='5%' mb='5%' as='h1' size='2xl'>
-									Connect. Collaborate. Learn. Seek Help.
-								</Heading>
-								<InputGroup size='lg' w='80%' m='auto'>
-									<InputLeftAddon bg='#fdfdfd'>
-										<Search2Icon />
-									</InputLeftAddon>
-									<Input
-										textColor='#000000'
-										variant='outline'
-										placeholder='Search for keywords like ‘web developer’, ‘designer’, ‘marketers’, etc'
-										colorScheme='whiteAlpha'
-										size='lg'
+						<Flex justifyContent='space-between'>
+							<Image src='/logo-black.svg' alt='leetlinc' p={5} h='100px' w='100px' />
+							<div>
+								{result.length > 0 && (
+									<Accordion
+										w='300px'
 										bg='#ffffff'
-										value={input}
-										onChange={(e) => setInput(e.target.value)}
-										onKeyPress={handleKeyPress}
-									/>
-								</InputGroup>
-							</Flex>
-							<Flex>
-								<Flex direction='column' align='center'>
-									<div>
-										{result.length > 0 && (
-											<Container bg='#ffffff' borderRadius='5px' mt='1%'>
-												<Text fontSize='xl' fontWeight='500' pt={2}>
-													{result[0].name}
-												</Text>
-												<Text fontSize='md' fontWeight='300' pt={1} pb={2}>
-													{result[0].college}
-												</Text>
+										borderRadius='10px'
+										m={5}
+										allowToggle
+										position='absolute'
+										top='5px'
+										right='20px'
+										zIndex='9999'>
+										<AccordionItem>
+											<AccordionButton>
+												<Flex justifyContent='space-between' w='100%'>
+													<Flex
+														direction='column'
+														w='100%'
+														align='flex-start'>
+														<Text fontSize='lg' fontWeight='500'>
+															{result[0].name}
+														</Text>
+														<Text fontSize='sm' fontWeight='300'>
+															{result[0].college}
+														</Text>
+													</Flex>
+													<AccordionIcon h='48px' />
+												</Flex>
+											</AccordionButton>
+											<AccordionPanel>
+												<ul>
+													{result[0].interests.map((interest) => (
+														<Tag
+															key={interest}
+															mr={1}
+															mb={1}
+															bg='#F265FF'
+															textColor='#ffffff'
+															opacity='0.7'>
+															{interest}
+														</Tag>
+													))}
+												</ul>
+												<Button
+													textColor='#F265FF'
+													fontWeight='300'
+													size='sm'
+													colorScheme='purple'
+													variant='ghost'>
+													Edit Interests
+												</Button>
 												<ul>
 													{result[0].skills.map((skill) => (
 														<Tag
 															key={skill}
 															mr={1}
 															mb={1}
-															bg='#0eb500'
+															bg='#13DA01'
 															textColor='#ffffff'
-															opacity='0.6'>
+															opacity='0.7'>
 															{skill}
 														</Tag>
 													))}
 												</ul>
 												<Button
-													colorScheme='red'
-													onClick={() => signout()}
-													size='xs'
-													m={4}
+													textColor='#13DA01'
+													fontWeight='300'
+													colorScheme='green'
+													size='sm'
 													variant='ghost'>
-													Log Out
+													Edit Skills
 												</Button>
-											</Container>
-										)}
-									</div>
-								</Flex>
+												<Center>
+													<Button
+														colorScheme='red'
+														onClick={() => signout()}
+														size='xs'
+														m={1}
+														variant='ghost'>
+														Logout
+													</Button>
+												</Center>
+											</AccordionPanel>
+										</AccordionItem>
+									</Accordion>
+								)}
+							</div>
+						</Flex>
+						<Flex>
+							<Flex direction='column' m='auto'>
+								<Heading textAlign='center' mt='5%' mb='5%' as='h1' size='2xl'>
+									Connect. Collaborate. Learn. Seek Help.
+								</Heading>
+								<Tabs isFitted variant='enclosed'>
+									<TabList mb='1em'>
+										<Tab>Search By Interest</Tab>
+										<Tab>Search By Skill</Tab>
+									</TabList>
+									<TabPanels>
+										<TabPanel>
+											<InputGroup size='lg' w='80%' m='auto'>
+												<InputLeftAddon bg='#fdfdfd'>
+													<Search2Icon />
+												</InputLeftAddon>
+												<Input
+													textColor='#000000'
+													variant='outline'
+													placeholder='Search for interests'
+													colorScheme='whiteAlpha'
+													size='lg'
+													bg='#ffffff'
+													value={inputInterest}
+													onChange={(e) =>
+														setInputInterest(e.target.value)
+													}
+													onKeyPress={handleKeyPressInterest}
+												/>
+											</InputGroup>
+										</TabPanel>
+										<TabPanel>
+											<InputGroup size='lg' w='80%' m='auto'>
+												<InputLeftAddon bg='#fdfdfd'>
+													<Search2Icon />
+												</InputLeftAddon>
+												<Input
+													textColor='#000000'
+													variant='outline'
+													placeholder='Search for keywords like ‘web developer’, ‘designer’, ‘marketers’, etc'
+													colorScheme='whiteAlpha'
+													size='lg'
+													bg='#ffffff'
+													value={inputSkill}
+													onChange={(e) => setInputSkill(e.target.value)}
+													onKeyPress={handleKeyPressSkill}
+												/>
+											</InputGroup>
+										</TabPanel>
+									</TabPanels>
+								</Tabs>
 							</Flex>
 						</Flex>
 					</Box>
 				</>
 			) : null}
-		</div>
+		</>
 	);
 }

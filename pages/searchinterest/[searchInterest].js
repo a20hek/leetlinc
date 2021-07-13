@@ -25,9 +25,15 @@ const Card = (props) => {
 				{props.college}
 			</Text>
 			<ul>
-				{props.skills.map((skill) => (
-					<Tag key={skill} mr={1} mb={1} bg='#0eb500' textColor='#ffffff' opacity='0.6'>
-						{skill}
+				{props.interests.map((interest) => (
+					<Tag
+						key={interest}
+						mr={1}
+						mb={1}
+						bg='#F265FF'
+						textColor='#ffffff'
+						opacity='0.7'>
+						{interest}
 					</Tag>
 				))}
 			</ul>
@@ -35,7 +41,7 @@ const Card = (props) => {
 	);
 };
 
-export default function SearchResult() {
+export default function SearchInterest() {
 	async function Search(query) {
 		// const upper = query.toUpperCase();
 		// const lower = query.toLowerCase();
@@ -44,7 +50,7 @@ export default function SearchResult() {
 		const snapshot = await firebase
 			.firestore()
 			.collection('users')
-			.where('skills', 'array-contains', query)
+			.where('interests', 'array-contains', query)
 			.get();
 		const results = [];
 		snapshot.forEach((doc) => {
@@ -59,7 +65,7 @@ export default function SearchResult() {
 	});
 
 	const router = useRouter();
-	const searchreq = router.query.searchResult;
+	const searchreq = router.query.searchInterest;
 	const [result, setResult] = useState([]);
 
 	const [input, setInput] = useState(searchreq);
@@ -67,8 +73,8 @@ export default function SearchResult() {
 	const handleKeyPress = (event) => {
 		if (event.key === 'Enter') {
 			router.push({
-				pathname: '/search/[searchResult]',
-				query: { searchResult: input },
+				pathname: '/searchinterest/[searchInterest]',
+				query: { searchInterest: input },
 			});
 		}
 	};
@@ -112,7 +118,7 @@ export default function SearchResult() {
 										<Card
 											key={item.name}
 											name={item.name}
-											skills={item.skills}
+											interests={item.interests}
 											college={item.college}
 											email={item.email}
 										/>

@@ -1,9 +1,1 @@
-<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="29.6676" cy="12.1333" r="3.68375" stroke="black" stroke-opacity="0.8" stroke-width="1.5"/>
-<circle cx="11.4892" cy="36.5189" r="3.68375" stroke="black" stroke-opacity="0.8" stroke-width="1.5"/>
-<circle cx="47.8459" cy="36.5189" r="3.68375" stroke="black" stroke-opacity="0.8" stroke-width="1.5"/>
-<path d="M20.5783 27.9873C27.188 14.8822 32.106 14.686 39.4217 27.9873H20.5783Z" stroke="black" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.40001 52.3728C9.00967 39.2677 13.9277 39.0716 21.2434 52.3728H2.40001Z" stroke="black" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M38.7566 52.3728C45.3663 39.2677 50.2843 39.0716 57.6 52.3728H38.7566Z" stroke="black" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M30.0001 31.3484V38.9622M30.0001 38.9622L23.338 44.6726M30.0001 38.9622L36.6621 44.6726" stroke="black" stroke-opacity="0.8" stroke-width="1.5"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="none" xmlns:v="https://vecta.io/nano"><style><![CDATA[.B{stroke-opacity:.8}]]></style><g stroke="#000" stroke-width="1.5" class="B"><circle cx="29.668" cy="12.133" r="3.684"/><circle cx="11.489" cy="36.519" r="3.684"/><circle cx="47.846" cy="36.519" r="3.684"/><path d="M20.578 27.987c6.61-13.105 11.528-13.301 18.843 0H20.578zM2.4 52.373c6.61-13.105 11.528-13.301 18.843 0H2.4zm36.357 0c6.61-13.105 11.528-13.301 18.843 0H38.757z" stroke-linejoin="round"/><path d="M30 31.348v7.614m0 0l-6.662 5.71M30 38.962l6.662 5.71"/></g></svg>
