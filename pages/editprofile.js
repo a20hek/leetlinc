@@ -83,21 +83,22 @@ export default function Editprofile() {
 				<br />
 				<Stack>
 					<FormLabel htmlFor='name' opacity='0.7'>
-						Enter all the things that interests you
+						Enter things that interests you, one by one
 					</FormLabel>
 					<Flex>
 						<Input
 							autoFocus
 							w={['300px', '400px', '400px']}
-							placeholder='E.g. AI, Crypto, Anime, Reading etc'
+							placeholder='E.g. Anime or Reading or Crypto'
 							type='text'
 							value={inputinterest}
 							onChange={(e) => setInputinterest(e.target.value)}
 						/>
 						<Tooltip
+							defaultIsOpen
 							hasArrow
-							label='Add interests'
-							aria-label='Add Interests'
+							label='Input an interest and click here'
+							aria-label='Add Interest'
 							color='white'>
 							<Button
 								disabled={!inputinterest}
@@ -126,17 +127,17 @@ export default function Editprofile() {
 					</ul>
 					<br />
 					<FormLabel htmlFor='name' opacity='0.7'>
-						Enter skills, frameworks and softwares known
+						Enter skills, frameworks and softwares known, one by one
 					</FormLabel>
 					<Flex>
 						<Input
 							w={['300px', '400px', '400px']}
-							placeholder='E.g. Javasript, Figma'
+							placeholder='E.g. JavaScript'
 							type='text'
 							value={inputskill}
 							onChange={(e) => setInputskill(e.target.value)}
 						/>
-						<Tooltip hasArrow label='Add skill' aria-label='Add Skills' color='white'>
+						<Tooltip hasArrow label='Add skill' aria-label='Add Skill' color='white'>
 							<Button
 								disabled={!inputskill}
 								onClick={addSkill}
