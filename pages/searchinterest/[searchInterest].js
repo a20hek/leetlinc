@@ -45,14 +45,14 @@ const Card = (props) => {
 
 export default function SearchInterest() {
 	async function Search(query) {
-		// const upper = query.toUpperCase();
-		// const lower = query.toLowerCase();
-		// const FirstLetter = query.charAt(0).toUpperCase() + query.slice(1);
+		const upper = query.toUpperCase();
+		const lower = query.toLowerCase();
+		const firstLetter = query.charAt(0).toUpperCase() + query.slice(1);
 
 		const snapshot = await firebase
 			.firestore()
 			.collection('users')
-			.where('interests', 'array-contains', query)
+			.where('interests', 'array-contains-any', [upper, lower, firstLetter])
 			.get();
 		const results = [];
 		snapshot.forEach((doc) => {
