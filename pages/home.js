@@ -27,9 +27,12 @@ import {
 	TabPanels,
 	TagLabel,
 	TagCloseButton,
+	Link,
 } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons';
 import Head from 'next/head';
+import Loginform from '../components/Loginform';
+import NextLink from 'next/link';
 
 function removeSkill(uid, skill) {
 	return firebase
@@ -101,7 +104,6 @@ export default function Home() {
 			Userdata(uid).then(({ results }) => setResult(results));
 		}
 	}, [uid]);
-
 	console.log(result);
 
 	return (
@@ -191,9 +193,9 @@ export default function Home() {
 														))}
 												</ul>
 												<Button
-													textColor='#000000'
+													textColor='#0C8C00'
 													fontWeight='300'
-													colorScheme='blackAlpha'
+													colorScheme='teal'
 													size='sm'
 													variant='ghost'
 													onClick={() => router.push('/editprofile')}>
@@ -285,7 +287,27 @@ export default function Home() {
 						</Flex>
 					</Box>
 				</>
-			) : null}
+			) : (
+				<Box mt={20}>
+					<Center>
+						<Text textAlign='center' fontSize='xl' fontWeight='300'>
+							Login
+						</Text>
+					</Center>
+					<Center>
+						<Loginform />
+					</Center>
+					<Center>
+						<NextLink href='/signup'>
+							<Link m={2}>
+								<Text as='u' fontSize='xs' opacity='80%'>
+									New Here? Register
+								</Text>
+							</Link>
+						</NextLink>
+					</Center>
+				</Box>
+			)}
 		</>
 	);
 }

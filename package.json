@@ -14,7 +14,6 @@
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "firebase": "^8.7.1",
-    "firebase-admin": "^9.10.0",
     "focus-visible": "^5.2.0",
     "framer-motion": "^4.1.17",
     "js-cookie": "^2.2.1",

@@ -200,7 +200,7 @@ function LandingPage() {
 						mb='3%'
 						mt='4%'
 						maxW='1100px'>
-						Find students from within the Pillai Campus to work with, on cool stuff
+						Find students with similar interests, within the Pillai Campus
 					</Heading>
 				</Center>
 				<InputGroup size='lg' w={['90%', '80%', '80%']} maxW='720px' m='auto'>
