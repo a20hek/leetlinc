@@ -48,7 +48,7 @@ export default function Loginform() {
 				<FormControl isInvalid={errors.email && errors.email.message}>
 					<FormLabel htmlFor='email'>Email</FormLabel>
 					<Input
-						w='400px'
+						w={['350px', '400px', '400px']}
 						autoFocus
 						placeholder='jake@gmail.com'
 						type='text'
@@ -65,8 +65,9 @@ export default function Loginform() {
 				</FormControl>
 				<FormControl isInvalid={errors.pass && errors.pass.message}>
 					<FormLabel htmlFor='Password'>Password</FormLabel>
+					{/* <Center> */}
 					<Input
-						w='400px'
+						w={['350px', '400px', '400px']}
 						type='password'
 						{...register('pass', {
 							required: 'Password is required',
@@ -77,6 +78,7 @@ export default function Loginform() {
 						})}
 						bg='#ffffff'
 					/>
+					{/* </Center> */}
 					<FormErrorMessage>{errors.pass && errors.pass.message}</FormErrorMessage>
 					<Center>
 						<Button
@@ -96,6 +98,7 @@ export default function Loginform() {
 					<Divider />
 					<Center>
 						<Button
+							fontSize={['sm', 'md', 'md']}
 							size='md'
 							onClick={() => auth.signinWithGoogle()}
 							leftIcon={<GoogleIcon />}

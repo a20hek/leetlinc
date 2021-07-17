@@ -12,14 +12,17 @@ export default function contact() {
 			</Flex>
 			<Container size='xl'>
 				<Heading textAlign='center' fontWeight='500'>
-					CONTACT
+					ABOUT
 				</Heading>
 				<br />
 				<br />
 				<Text fontSize='xl'>
-					In case you’re facing any difficulties while navigating through the website,
-					drop a mail at abhishek@leetlinc.com or call +91 8104053253, we’ll be forever
-					ready to help you out.
+					Leetlinc was made so that we, students could collaborate, form communities and
+					learn from each other. Due to this pandemic, it has been really difficult for us
+					to connect with like-minded people. Even if there weren’t a pandemic, it would
+					have been seemingly impossible to keep track of over a thousand fellow students,
+					their interests and their skills. Now, to have all that information within your
+					fingertips, makes college life a bit easier.
 				</Text>
 				<br />
 				<Text fontSize='xl'>
@@ -28,7 +31,6 @@ export default function contact() {
 					our team. Contact us at abhishek@leetlinc.com or call +91 8104053253 for more
 					details.
 				</Text>
-				<br />
 				<br />
 				<br />
 				<Image src='/all-icons.svg' alt='leetlinc' m='auto' />

@@ -10,9 +10,11 @@ import {
 	Flex,
 	InputGroup,
 	InputLeftAddon,
+	Image,
 } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons';
 import Head from 'next/head';
+import NextLink from 'next/link';
 
 const Card = (props) => {
 	return (
@@ -94,9 +96,18 @@ export default function SearchInterest() {
 					<Head>
 						<title>{searchreq} - Search | Leetlinc</title>
 					</Head>
-					<Box bg='#f4f4f4' height='100vh'>
-						<Container maxW='container.md'>
-							<InputGroup size='lg'>
+					<Box height='auto' bg='#000000'>
+						<Flex>
+							<NextLink href='/home'>
+								<Image
+									src='/logo-white.svg'
+									alt='leetlinc'
+									h='48px'
+									m={[2, 4, 4]}
+									cursor='pointer'
+								/>
+							</NextLink>
+							<InputGroup size='lg' p={[2, 4, 4]}>
 								<InputLeftAddon>
 									<Search2Icon />
 								</InputLeftAddon>
@@ -104,7 +115,7 @@ export default function SearchInterest() {
 									m='auto'
 									textColor='#000000'
 									variant='outline'
-									placeholder='Search for keywords like ‘web developer’, ‘designer’, ‘marketers’, etc'
+									placeholder='Search for interests'
 									colorScheme='whiteAlpha'
 									bg='#fdfdfd'
 									value={input}
@@ -112,7 +123,11 @@ export default function SearchInterest() {
 									onKeyPress={handleKeyPress}
 								/>
 							</InputGroup>
-							<Flex direction='column' mt='5%'>
+						</Flex>
+					</Box>
+					<Box bg='#f4f4f4' height='100vh'>
+						<Container maxW='container.md'>
+							<Flex direction='column'>
 								{result.length > 0 &&
 									result.map((item) => (
 										<Card
@@ -124,6 +139,17 @@ export default function SearchInterest() {
 										/>
 									))}
 							</Flex>
+							{result.length == 0 && (
+								<Text
+									m='10%'
+									textAlign='center'
+									fontWeight='500'
+									fontSize='xl'
+									opacity='0.7'>
+									Oops, unfortunately we couldn’t find any results for &apos;
+									{searchreq}&apos;
+								</Text>
+							)}
 						</Container>
 					</Box>
 				</>

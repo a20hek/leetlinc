@@ -25,9 +25,32 @@ import {
 	TabPanel,
 	Tab,
 	TabPanels,
+	TagLabel,
+	TagCloseButton,
 } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons';
 import Head from 'next/head';
+
+function removeSkill(uid, skill) {
+	return firebase
+		.firestore()
+		.collection('users')
+		.doc(uid)
+		.update({
+			skills: firebase.firestore.FieldValue.arrayRemove(skill),
+		})
+		.then(window.location.reload(false));
+}
+function removeInterest(uid, interest) {
+	return firebase
+		.firestore()
+		.collection('users')
+		.doc(uid)
+		.update({
+			interests: firebase.firestore.FieldValue.arrayRemove(interest),
+		})
+		.then(window.location.reload(false));
+}
 
 export default function Home() {
 	const { user, signout, uid } = useAuth();
@@ -82,29 +105,34 @@ export default function Home() {
 	console.log(result);
 
 	return (
-		//HELP
-		//NAVBAR
-		//LOGO
 		<>
 			{isLoggedin ? (
 				<>
 					<Head>
 						<title>Leetlinc </title>
 					</Head>
-					<Box bg='#f4f4f4' h='100vh' pr='5%' pl='5%'>
+					<Box bg='#f4f4f4' h='100vh' pr={['8px', '5%', '5%']} pl={['8px', '5%', '5%']}>
 						<Flex justifyContent='space-between'>
-							<Image src='/logo-black.svg' alt='leetlinc' p={5} h='100px' w='100px' />
+							<Image
+								src='/logo-black.svg'
+								alt='leetlinc'
+								p={[2, 5, 5]}
+								h={['72px', '100px', '100px']}
+								w={['72px', '100px', '100px']}
+								cursor='pointer'
+								top='5px'
+							/>
 							<div>
 								{result.length > 0 && (
 									<Accordion
-										w='300px'
+										w={['250px', '300px', '300px']}
 										bg='#ffffff'
 										borderRadius='10px'
-										m={5}
+										m={[1, 5, 5]}
 										allowToggle
 										position='absolute'
-										top='5px'
-										right='20px'
+										top={['auto', '5px', '5px']}
+										right={['10px', '20px', '20px']}
 										zIndex='9999'>
 										<AccordionItem>
 											<AccordionButton>
@@ -134,18 +162,15 @@ export default function Home() {
 																bg='#F265FF'
 																textColor='#ffffff'
 																opacity='0.7'>
-																{interest}
+																<TagLabel>{interest}</TagLabel>
+																<TagCloseButton
+																	onClick={() =>
+																		removeInterest(uid, skill)
+																	}
+																/>
 															</Tag>
 														))}
 												</ul>
-												<Button
-													textColor='#F265FF'
-													fontWeight='300'
-													size='sm'
-													colorScheme='purple'
-													variant='ghost'>
-													Edit Interests
-												</Button>
 												<ul>
 													{result[0].skills.length > 0 &&
 														result[0].skills.map((skill) => (
@@ -156,17 +181,23 @@ export default function Home() {
 																bg='#13DA01'
 																textColor='#ffffff'
 																opacity='0.7'>
-																{skill}
+																<TagLabel>{skill}</TagLabel>
+																<TagCloseButton
+																	onClick={() =>
+																		removeSkill(uid, skill)
+																	}
+																/>
 															</Tag>
 														))}
 												</ul>
 												<Button
-													textColor='#13DA01'
+													textColor='#000000'
 													fontWeight='300'
-													colorScheme='green'
+													colorScheme='blackAlpha'
 													size='sm'
-													variant='ghost'>
-													Edit Skills
+													variant='ghost'
+													onClick={() => router.push('/editprofile')}>
+													Add Skills/Interests
 												</Button>
 												<Center>
 													<Button
@@ -186,7 +217,12 @@ export default function Home() {
 						</Flex>
 						<Flex>
 							<Flex direction='column' m='auto'>
-								<Heading textAlign='center' mt='5%' mb='5%' as='h1' size='2xl'>
+								<Heading
+									textAlign='center'
+									mt={['15%', '5%', '5%']}
+									mb='5%'
+									as='h1'
+									size='2xl'>
 									Connect. Collaborate. Learn. Seek Help.
 								</Heading>
 								<Tabs isLazy isFitted variant='enclosed-colored'>
@@ -200,7 +236,10 @@ export default function Home() {
 									</TabList>
 									<TabPanels>
 										<TabPanel>
-											<InputGroup size='lg' w='80%' m='auto'>
+											<InputGroup
+												size='lg'
+												w={['100%', '80%', '80%']}
+												m='auto'>
 												<InputLeftAddon bg='#fdfdfd'>
 													<Search2Icon />
 												</InputLeftAddon>
@@ -220,14 +259,17 @@ export default function Home() {
 											</InputGroup>
 										</TabPanel>
 										<TabPanel>
-											<InputGroup size='lg' w='80%' m='auto'>
+											<InputGroup
+												size='lg'
+												w={['100%', '80%', '80%']}
+												m='auto'>
 												<InputLeftAddon bg='#fdfdfd'>
 													<Search2Icon />
 												</InputLeftAddon>
 												<Input
 													textColor='#000000'
 													variant='outline'
-													placeholder='Search for keywords like ‘web developer’, ‘designer’, ‘marketers’, etc'
+													placeholder='Search for skills e.g. Python'
 													colorScheme='whiteAlpha'
 													size='lg'
 													bg='#ffffff'

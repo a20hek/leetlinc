@@ -52,6 +52,7 @@ export default function Registration2() {
 			})
 			.then(router.push('/home'));
 	}
+
 	firebase.auth().onAuthStateChanged(function (user) {
 		setIsLoggedin(!!user);
 	});
@@ -81,7 +82,7 @@ export default function Registration2() {
 							<Flex>
 								<Input
 									autoFocus
-									w='400px'
+									w={['300px', '400px', '400px']}
 									placeholder='E.g. AI, Crypto, Anime, Reading etc'
 									type='text'
 									value={inputinterest}
@@ -123,7 +124,7 @@ export default function Registration2() {
 							</FormLabel>
 							<Flex>
 								<Input
-									w='400px'
+									w={['300px', '400px', '400px']}
 									placeholder='E.g. Javasript, Figma'
 									type='text'
 									value={inputskill}
@@ -169,7 +170,8 @@ export default function Registration2() {
 									borderColor='green.300'
 									variant='outline'
 									textColor='#ffffff'
-									_hover={{ bg: '#13DA01' }}>
+									_hover={{ bg: '#13DA01' }}
+									disabled={inputskill || inputinterest}>
 									Next
 								</Button>
 							</Center>

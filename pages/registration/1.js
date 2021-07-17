@@ -67,7 +67,7 @@ export default function Registration1() {
 									placeholder='Vishy Anand'
 									type='text'
 									{...register('name')}
-									w='400px'
+									w={['350px', '400px', '400px']}
 								/>
 							</FormControl>
 							<FormControl>
@@ -76,7 +76,7 @@ export default function Registration1() {
 								</FormLabel>
 								<Input
 									isRequired
-									w='400px'
+									w={['350px', '400px', '400px']}
 									placeholder='Zugzwang College'
 									type='text'
 									{...register('college')}

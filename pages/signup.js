@@ -62,9 +62,13 @@ export default function Register() {
 			<Head>
 				<title>Signup | Leetlinc</title>
 			</Head>
-
-			<Container w='80%' maxW='500px'>
-				<Box bg='gray.100' borderRadius={20} mt='10vh'>
+			<Box mt={20}>
+				<Center>
+					<Text textAlign='center' fontSize='xl' fontWeight='300'>
+						Signup
+					</Text>
+				</Center>
+				<Center>
 					<Stack
 						as='form'
 						onSubmit={handleSubmit((data) => registeruser(data))}
@@ -74,7 +78,7 @@ export default function Register() {
 							<FormLabel htmlFor='email'>Email</FormLabel>
 
 							<Input
-								w='400px'
+								w={['350px', '400px', '400px']}
 								autoFocus
 								placeholder='jake@gmail.com'
 								type='text'
@@ -94,7 +98,7 @@ export default function Register() {
 						<FormControl isInvalid={errors.pass && errors.pass.message}>
 							<FormLabel htmlFor='Password'>Password</FormLabel>
 							<Input
-								w='400px'
+								w={['350px', '400px', '400px']}
 								type='password'
 								{...register('pass', {
 									required: 'Password is required',
@@ -114,7 +118,7 @@ export default function Register() {
 							<Button
 								isLoading={loading}
 								type='submit'
-								w='400px'
+								w='60%'
 								mt={3}
 								m={2}
 								bg='#0EB500'
@@ -128,6 +132,7 @@ export default function Register() {
 						<Divider />
 						<Center>
 							<Button
+								fontSize={['sm', 'md', 'md']}
 								size='md'
 								onClick={() => auth.signinWithGoogle()}
 								leftIcon={<GoogleIcon />}
@@ -150,8 +155,8 @@ export default function Register() {
 							</NextLink>
 						</Center>
 					</Stack>
-				</Box>
-			</Container>
+				</Center>
+			</Box>
 		</>
 	);
 }
