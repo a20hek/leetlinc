@@ -25,7 +25,6 @@ import {
 	ModalFooter,
 	InputGroup,
 	InputLeftAddon,
-	IconButton,
 	CloseButton,
 } from '@chakra-ui/react';
 import { HamburgerIcon, Search2Icon } from '@chakra-ui/icons';

@@ -11,7 +11,6 @@ import {
 	Text,
 	Flex,
 	Tag,
-	Container,
 	InputGroup,
 	InputLeftAddon,
 	Accordion,
@@ -104,7 +103,6 @@ export default function Home() {
 			Userdata(uid).then(({ results }) => setResult(results));
 		}
 	}, [uid]);
-	console.log(result);
 
 	return (
 		<>

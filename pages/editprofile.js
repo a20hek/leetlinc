@@ -8,14 +8,11 @@ import {
 	FormLabel,
 	Stack,
 	Center,
-	Text,
 	Container,
 	Heading,
 	Tag,
 	Flex,
 	Tooltip,
-	TagCloseButton,
-	TagLabel,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import Head from 'next/head';

@@ -75,8 +75,6 @@ export default function SearchSkill() {
 		}
 	};
 
-	console.log(Search(searchreq));
-
 	useEffect(() => {
 		if (searchreq) {
 			Search(searchreq).then(({ results }) => setResult(results));
