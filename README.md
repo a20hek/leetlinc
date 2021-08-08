@@ -2,7 +2,7 @@
 
 
 ## The Project and the problem it solves
-It is difficult to find students similar interests as you to collaborate on something, or to form communities, so is finding people to learn skills from. So this website website was made so that students could sign up using their skills and interests, and then search for other students just like them.
+It is difficult to find students similar interests as you to collaborate on something, or to form communities, so is finding people to learn skills from. So this website was made so that students could sign up using their skills and interests, and then search for other students just like them.
 
 
 ## Design Process and Iterations
